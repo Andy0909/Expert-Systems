@@ -1,0 +1,63 @@
+//expert systems
+//CLIPS program
+
+(deftemplate car(slot type))
+(deftemplate car-trouble(slot trouble))
+(defrule car-type-A-1
+	(car-trouble(trouble noise-when-brake))
+	=>
+	(assert(car(type A))))
+
+(defrule car-type-A-2
+	(car-trouble(trouble noise-from-tire))
+	=>
+	(assert(car(type A))))
+	
+(defrule car-type-B-1
+	(car-trouble(trouble water-thermometer-H))
+	=>
+	(assert(car(type B))))
+	
+(defrule car-type-B-2
+	(car-trouble(trouble water-leak))
+	=>
+	(assert(car(type B))))
+	
+(defrule car-type-C
+	(car-trouble(trouble noise-from-engine-room))
+	=>
+	(assert(car(type C))))
+	
+(defrule car-type-D
+	(car-trouble(trouble engine-cannot-catch))
+	=>
+	(assert(car(type D))))
+	
+(defrule deal-with-type-A
+	(car(type-A))
+	=>
+	(printout t"brake-trouble" crlf)
+	(printout t"check brake pedal and oil" crlf))
+	
+(defrule deal-with-type-B
+	(car(type-B))
+	=>
+	(printout t"water-tank-trouble" crlf)
+	(printout t"repair the water tank or add water" crlf))
+	
+(defrule deal-with-type-C
+	(car(type-C))
+	=>
+	(printout t"engine-belt-loose" crlf)
+	(printout t"change the engine belt" crlf))
+	
+(defrule deal-with-type-D
+	(car(type-D))
+	=>
+	(printout t"car-battery-no-power" crlf)
+	(printout t"replace or charge a car battery" crlf))
+	
+//input fact: (assert(car-trouble(trouble noise-when-brake)))
+// run => print: brake-trouble
+              // check brake pedal and oil
+	
